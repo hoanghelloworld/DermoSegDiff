@@ -40,3 +40,8 @@ def get_dataloaders(config, mode_or_modes):
         return _data[mode_or_modes.lower()]["loader"]
     else:
         raise ValueError("<mode_or_modes> must be either a string or a list of strings!")
+
+    # Add custom dataset support
+    elif ds_name.lower() == "custom":
+        from loaders.custom import get_custom
+        data = get_custom(config, logger=logger, verbose=True)
